@@ -30,7 +30,7 @@ class Attempt(db.Model):
     )
     responses = db.relationship(
         'Response',
-        backref='attempt',
+        back_populates='attempt',
         cascade='all, delete',
         passive_deletes=True
     )

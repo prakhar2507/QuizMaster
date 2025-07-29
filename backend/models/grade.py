@@ -14,7 +14,7 @@ class Grade(db.Model):
     subjects = db.relationship(
         'Subject',
         secondary=grade_subject,
-        back_populates='grade',
+        back_populates='grades',
         passive_deletes=True
     )
 

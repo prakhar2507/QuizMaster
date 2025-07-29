@@ -19,7 +19,11 @@ class Response(db.Model):
         back_populates='responses',
         passive_deletes=True
     )
-    attempt = db.relationship('Attempt', backref='responses', passive_deletes=True)
+    attempt = db.relationship(
+        'Attempt',
+        back_populates='responses',
+        passive_deletes=True
+    )
     
     def __repr__(self):
         return f'<Response {self.response_id}>'
