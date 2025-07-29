@@ -1,6 +1,6 @@
-from app import db
+from backend.app import db
 from datetime import datetime, timezone
-from backend.models.chapters import Chapter
+# from backend.models.chapters import Chapter
 from backend.models.association_tables import quiz_question
 
 class Question(db.Model):

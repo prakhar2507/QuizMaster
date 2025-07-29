@@ -13,5 +13,16 @@ def create_app():
     app.config['SECRET_KEY'] = 'quiz-master'
     db.init_app(app)
     migrate.init_app(app, db)
+    from backend.models import (
+        User,
+        Subject,
+        Chapter,
+        Quiz,
+        Question,
+        Option,
+        Attempt,
+        Response,
+        Grade,
+    )
 
     return app 

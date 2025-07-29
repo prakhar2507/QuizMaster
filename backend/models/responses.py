@@ -1,7 +1,7 @@
-from app import db
+from backend.app import db
 from datetime import datetime, timezone
-from backend.models.attempts import Attempt
-from backend.models.questions import Question
+# from backend.models.attempts import Attempt
+# from backend.models.questions import Question
 
 class Response(db.Model):
     __tablename__ = 'responses'

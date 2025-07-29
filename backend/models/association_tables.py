@@ -1,4 +1,4 @@
-from app import db
+from backend.app import db
 
 grade_subject = db.Table('grade_subject',
     db.Column('grade_id', db.Integer, db.ForeignKey('grade.grade_id', ondelete='CASCADE'), primary_key=True),

@@ -1,4 +1,4 @@
-from app import db
+from backend.app import db
 from datetime import datetime, timezone
 from backend.models.association_tables import quiz_chapter, quiz_subject
 from backend.models.association_tables import quiz_question
