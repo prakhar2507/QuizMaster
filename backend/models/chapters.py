@@ -1,6 +1,7 @@
 from app import db
 from datetime import datetime, timezone
-from app.models.subjects import Subject
+from backend.models.subjects import Subject
+from backend.models.association_tables import quiz_chapter
 
 class Chapter(db.Model):
     __tablename__ = 'chapters'
@@ -17,11 +18,19 @@ class Chapter(db.Model):
         'Subject',
         back_populates='chapters'
     )
-    
     questions = db.relationship(
         'Question',
         back_populates='chapter',
         cascade='all, delete-orphan',
         passive_deletes=True
     )
+    quizzes = db.relationship(
+        'Quiz',
+        secondary=quiz_chapter,
+        back_populates='chapters',
+        passive_deletes=True
+    )
+    
+    def __repr__(self):
+        return f"<Chapter {self.chapter_name}>"
     

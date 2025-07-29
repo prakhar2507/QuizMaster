@@ -1,7 +1,7 @@
 from app import db
 from datetime import datetime, timezone
-from app.models.association_tables import grade_subject
-from app.models.subjects import Subject
+from backend.models.association_tables import grade_subject
+from backend.models.subjects import Subject
 
 class Grade(db.Model):
     __tablename__ = 'grade'
@@ -12,7 +12,7 @@ class Grade(db.Model):
     updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     subjects = db.relationship(
-        'Subjects',
+        'Subject',
         secondary=grade_subject,
         back_populates='grade',
         passive_deletes=True

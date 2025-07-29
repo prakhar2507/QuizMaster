@@ -14,3 +14,9 @@ quiz_subject = db.Table('quiz_subject',
     db.Column('quiz_id', db.Integer, db.ForeignKey('quizzes.quiz_id', ondelete='CASCADE'), primary_key=True),
     db.Column('subject_id', db.Integer, db.ForeignKey('subjects.subject_id', ondelete='CASCADE'), primary_key=True)
 )
+
+quiz_question = db.Table(
+    'quiz_question',
+    db.Column('quiz_id', db.Integer, db.ForeignKey('quizzes.quiz_id', ondelete='CASCADE'), primary_key=True),
+    db.Column('question_id', db.Integer, db.ForeignKey('questions.question_id', ondelete='CASCADE'), primary_key=True)
+)

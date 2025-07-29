@@ -1,7 +1,7 @@
 from app import db
 from datetime import datetime, timezone
-from app.models.association_tables import grade_subject
-from app.models.grade import Grade
+from backend.models.association_tables import grade_subject, quiz_subject
+from backend.models.grade import Grade
 
 class Subject(db.Model):
     __tablename__ = 'subjects'
@@ -22,6 +22,13 @@ class Subject(db.Model):
         back_populates='subject',
         cascade='all, delete',
         passive_deletes=True)
+    quizzes = db.relationship(
+        'Quiz',
+        secondary=quiz_subject,
+        back_populates='subjects',
+        passive_deletes=True
+    )
+
 
     def __repr__(self):
         return f"<Subject {self.subject_name}>"

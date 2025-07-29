@@ -1,6 +1,7 @@
 from app import db
 from datetime import datetime, timezone
-from app.models.association_tables import quiz_chapter, quiz_subject
+from backend.models.association_tables import quiz_chapter, quiz_subject
+from backend.models.association_tables import quiz_question
 
 class Quiz(db.Model):
     __tablename__ = 'quizzes'
@@ -24,6 +25,12 @@ class Quiz(db.Model):
     subjects = db.relationship(
         'Subject',
         secondary=quiz_subject,
+        back_populates='quizzes',
+        passive_deletes=True
+    )
+    questions = db.relationship(
+        'Question',
+        secondary=quiz_question,
         back_populates='quizzes',
         passive_deletes=True
     )
