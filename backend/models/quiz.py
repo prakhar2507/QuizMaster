@@ -1,12 +1,11 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-from backend.models.association_tables import quiz_chapter, quiz_subject
-from backend.models.association_tables import quiz_question
+from models.association_tables import quiz_chapter, quiz_subject, quiz_question
 
 class Quiz(db.Model):
     __tablename__ = 'quizzes'
     
-    quiz_id = db.Column(db.Integer, primary_key=True)
+    quiz_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     quiz_name = db.Column(db.String(200), nullable=False, unique=True)
     quiz_description = db.Column(db.String(1200))
     quiz_start_time = db.Column(db.DateTime, nullable=False)

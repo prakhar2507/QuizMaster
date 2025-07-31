@@ -1,12 +1,12 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-# from backend.models.attempts import Attempt
-# from backend.models.questions import Question
+from models import Attempt
+from models import Question
 
 class Response(db.Model):
     __tablename__ = 'responses'
     
-    response_id = db.Column(db.Integer, primary_key=True)
+    response_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     attempt_id = db.Column(db.Integer, db.ForeignKey('attempts.attempt_id', ondelete='CASCADE'), nullable=False, index=True)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id', ondelete='CASCADE'), nullable=False, index=True)
     selected_answer = db.Column(db.String(300), nullable=False)

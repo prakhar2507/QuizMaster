@@ -1,13 +1,13 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-# from backend.models.users import User
-# from backend.models.quiz import Quiz
-# from backend.models.response import Response
+from models import User
+from models import Quiz
+from models import Response
 
 class Attempt(db.Model):
     __tablename__ = 'attempts'
     
-    attempt_id = db.Column(db.Integer, primary_key=True)
+    attempt_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False, index=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.quiz_id', ondelete='CASCADE'), nullable=False, index=True)

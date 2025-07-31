@@ -1,28 +1,6 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from backend import create_app
 
-# Initialize SQLAlchemy (no app yet)
-db = SQLAlchemy()
-migrate = Migrate()
+app = create_app()
 
-def create_app():
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz_app.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = 'quiz-master'
-    db.init_app(app)
-    migrate.init_app(app, db)
-    from backend.models import (
-        User,
-        Subject,
-        Chapter,
-        Quiz,
-        Question,
-        Option,
-        Attempt,
-        Response,
-        Grade,
-    )
-
-    return app 
+if __name__ == '__main__':
+    app.run(debug=True) 

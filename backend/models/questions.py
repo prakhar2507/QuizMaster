@@ -1,12 +1,12 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-# from backend.models.chapters import Chapter
-from backend.models.association_tables import quiz_question
+from models import Chapter
+from models.association_tables import quiz_question
 
 class Question(db.Model):
     __tablename__ = 'questions'
     
-    question_id = db.Column(db.Integer, primary_key=True)
+    question_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     question_text = db.Column(db.String(600), nullable=False, unique=True)
     difficulty_level = db.Column(db.Integer, nullable=False)
     weightage = db.Column(db.Integer, nullable=False, default=5)

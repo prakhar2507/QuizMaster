@@ -1,12 +1,12 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-# from backend.models.subjects import Subject
-from backend.models.association_tables import quiz_chapter
+from models import Subject
+from models.association_tables import quiz_chapter
 
 class Chapter(db.Model):
     __tablename__ = 'chapters'
     
-    chapter_id = db.Column(db.Integer, primary_key=True)
+    chapter_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     chapter_name = db.Column(db.String(150), nullable=False, unique=True)
     
     subject_id = db.Column(db.Integer, db.ForeignKey('subjects.subject_id', ondelete='CASCADE'), nullable=False)

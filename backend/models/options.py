@@ -1,11 +1,11 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-# from backend.models.questions import Question
+from Models import Question
 
 class Option(db.Model):
     __tablename__ = 'options'
     
-    option_id = db.Column(db.Integer, primary_key=True)
+    option_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     options_text = db.Column(db.String(300), nullable=False)
     
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id', ondelete='CASCADE'), nullable=False, index=True)

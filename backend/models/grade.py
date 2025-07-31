@@ -1,12 +1,12 @@
-from backend.app import db
+from backend import db
 from datetime import datetime, timezone
-from backend.models.association_tables import grade_subject
+from models.association_tables import grade_subject
 # from backend.models.subjects import Subject
 
 class Grade(db.Model):
     __tablename__ = 'grade'
 
-    grade_id = db.Column(db.Integer, primary_key=True)
+    grade_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     grade_name = db.Column(db.String(60), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
