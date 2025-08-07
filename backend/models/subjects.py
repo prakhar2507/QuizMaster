@@ -1,7 +1,7 @@
 from backend import db
 from datetime import datetime, timezone
 from .association_tables import grade_subject, quiz_subject
-from models import Grade
+from .grade import Grade
 
 class Subject(db.Model):
     __tablename__ = 'subjects'

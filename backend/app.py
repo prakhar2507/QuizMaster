@@ -1,4 +1,5 @@
 from backend import create_app
+from flask_migrate import upgrade, downgrade
 
 app = create_app()
 

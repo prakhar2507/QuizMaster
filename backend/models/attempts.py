@@ -1,8 +1,8 @@
 from backend import db
 from datetime import datetime, timezone
-from models import User
-from models import Quiz
-from models import Response
+from .users import User
+from .quiz import Quiz
+from .responses import Response
 
 class Attempt(db.Model):
     __tablename__ = 'attempts'

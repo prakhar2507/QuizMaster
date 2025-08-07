@@ -3,7 +3,7 @@ from flask import request, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, create_refresh_token
 from backend import db
-from models import User
+from backend.models import User
 from datetime import datetime
 from itsdangerous import URLSafeTimedSerializer
 

@@ -1,4 +1,9 @@
 Flask
 Flask-SQLAlchemy
-Flask-Migrate 
-flask-cors 
+Flask-Migrate
+Flask-CORS
+Flask-RESTful
+Flask-JWT-Extended
+Flask-Login
+itsdangerous
+Werkzeug

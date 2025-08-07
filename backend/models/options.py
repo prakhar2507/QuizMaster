@@ -1,6 +1,6 @@
 from backend import db
 from datetime import datetime, timezone
-from Models import Question
+from .questions import Question
 
 class Option(db.Model):
     __tablename__ = 'options'

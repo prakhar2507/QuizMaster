@@ -1,6 +1,6 @@
 from backend import db
 from datetime import datetime, timezone
-from models.association_tables import quiz_chapter, quiz_subject, quiz_question
+from .association_tables import quiz_chapter, quiz_subject, quiz_question
 
 class Quiz(db.Model):
     __tablename__ = 'quizzes'

@@ -1,7 +1,5 @@
 from backend import db
 from datetime import datetime, timezone
-from models import Attempt
-from models import Question
 
 class Response(db.Model):
     __tablename__ = 'responses'

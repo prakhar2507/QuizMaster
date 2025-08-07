@@ -1,7 +1,7 @@
 from backend import db
 from datetime import datetime, timezone
-from models import Subject
-from models.association_tables import quiz_chapter
+from .subjects import Subject
+from .association_tables import quiz_chapter
 
 class Chapter(db.Model):
     __tablename__ = 'chapters'
