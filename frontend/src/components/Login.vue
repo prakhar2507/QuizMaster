@@ -1,14 +1,26 @@
 <template>
-  <div class="auth-form">
-    <h2>Login</h2>
-    <form @submit.prevent="login">
-      <input v-model="email" type="email" placeholder="Email" required />
-      <input v-model="password" type="password" placeholder="Password" required />
-      <button type="submit" :disabled="loading">Login</button>
-      <p v-if="error" class="error">{{ error }}</p>
-      <p v-if="success" class="success">{{ success }}</p>
-    </form>
-  </div>
+  <section class="auth-page">
+    <header class="top-header">
+      <router-link to="/" class="site-name">Quiz<span>Master</span></router-link>
+    </header>
+
+    <div class="auth-card">
+      <h2>Login</h2>
+      <form @submit.prevent="login">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" v-model="email" required />
+
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password" v-model="password" required />
+
+        <button type="submit" class="btn-primary">Sign In</button>
+      </form>
+      <p class="switch-link">
+        Don't have an account?
+        <router-link to="/register">Register</router-link>
+      </p>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -37,7 +49,6 @@ export default {
         if (!res.ok) throw new Error(data.message || "Login failed");
         this.success = "Login successful!";
         localStorage.setItem("access_token", data.access_token);
-        // You can redirect or update UI here
       } catch (err) {
         this.error = err.message;
       } finally {
@@ -48,10 +59,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.auth-form { max-width: 400px; margin: 2rem auto; padding: 2rem; border: 1px solid #eee; border-radius: 8px; }
-input { display: block; width: 100%; margin-bottom: 1rem; padding: 0.5rem; }
-button { width: 100%; padding: 0.5rem; }
-.error { color: red; }
-.success { color: green; }
-</style> 
+<style scoped src="../assets/auth.css"></style>

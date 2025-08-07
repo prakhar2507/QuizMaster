@@ -1,18 +1,38 @@
 <template>
-  <div class="auth-form">
-    <h2>Register</h2>
-    <form @submit.prevent="register">
-      <input v-model="form.full_name" placeholder="Full Name" required />
-      <input v-model="form.email" type="email" placeholder="Email" required />
-      <input v-model="form.dob" type="date" placeholder="Date of Birth" required />
-      <input v-model="form.qualification" placeholder="Qualification" required />
-      <input v-model="form.mobile_no" placeholder="Mobile Number" />
-      <input v-model="form.password" type="password" placeholder="Password" required />
-      <button type="submit" :disabled="loading">Register</button>
-      <p v-if="error" class="error">{{ error }}</p>
-      <p v-if="success" class="success">{{ success }}</p>
-    </form>
-  </div>
+  <section class="auth-page">
+    <header class="top-header">
+      <router-link to="/" class="site-name">Quiz<span>Master</span></router-link>
+    </header>
+
+    <div class="auth-card">
+      <h2>Register</h2>
+      <form @submit.prevent="register">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your full name" v-model="form.full_name" required />
+
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" v-model="form.email" required />
+
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password" v-model="form.password" required />
+
+        <label>Qualification</label>
+        <input type="text" placeholder="Enter your qualification" v-model="form.qualification" required />
+
+        <label>Date of Birth</label>
+        <input type="date" v-model="form.dob" required />
+
+        <label>Mobile No</label>
+        <input type="tel" placeholder="Enter your mobile number" v-model="form.mobile_no" required />
+
+        <button type="submit" class="btn-primary">Create Account</button>
+      </form>
+      <p class="switch-link">
+        Already have an account?
+        <router-link to="/login">Login</router-link>
+      </p>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -27,6 +47,7 @@ export default {
         mobile_no: "",
         password: "",
       },
+      agreed: false,
       loading: false,
       error: "",
       success: "",
@@ -34,6 +55,7 @@ export default {
   },
   methods: {
     async register() {
+      // if (!this.agreed) return;
       this.loading = true;
       this.error = "";
       this.success = "";
@@ -46,7 +68,8 @@ export default {
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Registration failed");
         this.success = "Registration successful! You can now log in.";
-        this.form = { full_name: "", email: "", dob: "", qualification: "", mobile_no: "", password: "" };
+        this.form = { full_name: "", email: "", password: "", qualification: "", dob: "", mobile_no: "" };
+        // this.agreed = false;
       } catch (err) {
         this.error = err.message;
       } finally {
@@ -57,10 +80,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.auth-form { max-width: 400px; margin: 2rem auto; padding: 2rem; border: 1px solid #eee; border-radius: 8px; }
-input { display: block; width: 100%; margin-bottom: 1rem; padding: 0.5rem; }
-button { width: 100%; padding: 0.5rem; }
-.error { color: red; }
-.success { color: green; }
-</style> 
+<style scoped src="../assets/auth.css"></style>
