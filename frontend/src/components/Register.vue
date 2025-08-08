@@ -47,31 +47,49 @@ export default {
         mobile_no: "",
         password: "",
       },
-      agreed: false,
       loading: false,
-      error: "",
-      success: "",
     };
   },
   methods: {
     async register() {
-      // if (!this.agreed) return;
       this.loading = true;
-      this.error = "";
-      this.success = "";
       try {
         const res = await fetch("http://localhost:5000/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(this.form),
         });
+
         const data = await res.json();
-        if (!res.ok) throw new Error(data.message || "Registration failed");
-        this.success = "Registration successful! You can now log in.";
-        this.form = { full_name: "", email: "", password: "", qualification: "", dob: "", mobile_no: "" };
-        // this.agreed = false;
+
+        if (!res.ok) {
+          await Swal.fire({
+            icon: "error",
+            title: "Registration Failed",
+            text: data.message || "Please try again.",
+            confirmButtonColor: "#4CAF50",
+          });
+          return;
+        }
+
+        await Swal.fire({
+          icon: "success",
+          title: "Registration Successful",
+          text: "You can now log in to your account.",
+          confirmButtonColor: "#4CAF50",
+          timer: 2000,
+          timerProgressBar: true,
+        });
+
+        this.$router.push("/login");
+
       } catch (err) {
-        this.error = err.message;
+        await Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err.message,
+          confirmButtonColor: "#4CAF50",
+        });
       } finally {
         this.loading = false;
       }

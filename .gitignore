@@ -271,3 +271,6 @@ migrations/
 
 # Instance
 instance/
+
+# vs-code file
+.vscode

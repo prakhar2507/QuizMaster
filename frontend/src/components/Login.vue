@@ -45,12 +45,36 @@ export default {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: this.email, password: this.password }),
         });
+
         const data = await res.json();
-        if (!res.ok) throw new Error(data.message || "Login failed");
-        this.success = "Login successful!";
+
+        if (!res.ok) {
+          await this.$swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text: data.message || "Please try again.",
+          });
+          return;
+        }
+
+        await this.$swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "Redirecting to dashboard...",
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
+
         localStorage.setItem("access_token", data.access_token);
+        this.$router.push("/dashboard");
+
       } catch (err) {
-        this.error = err.message;
+        await this.$swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err.message,
+        });
       } finally {
         this.loading = false;
       }
